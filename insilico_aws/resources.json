@@ -1,0 +1,65 @@
+{
+  "schema": "1.0.0",
+  "algorithm": {
+    "nach01": {
+      "training_instance_type": ["ml.g5.2xlarge", "ml.g6.2xlarge", "ml.g6e.2xlarge"],
+      "inference_instance_type": ["ml.p3.2xlarge", "ml.p3.8xlarge", "ml.p3.16xlarge"],
+      "training_max_run_hours": 140,
+      "training_volume_size_gb": 30,
+      "training_data_required": ["molecule", "task_description", "target"],
+      "inference_parameters": [
+        {
+          "Name": "TOP_P",
+          "Type": "Continuous",
+          "Range": {
+            "ContinuousParameterRangeSpecification": {
+              "MinValue": "0.0",
+              "MaxValue": "1.0"
+            }
+          }
+        },
+        {
+          "Name": "TOP_K",
+          "Type": "Integer",
+          "Range": {
+            "IntegerParameterRangeSpecification": {
+              "MinValue": "0",
+              "MaxValue": "32000"
+            }
+          }
+        },
+        {
+          "Name": "MAX_LENGTH",
+          "Type": "Integer",
+          "Range": {
+            "IntegerParameterRangeSpecification": {
+              "MinValue": "0",
+              "MaxValue": "1024"
+            }
+          }
+        },
+        {
+          "Name": "AGGREGATING_STRATEGY",
+          "Type": "Categorical",
+          "DefaultValue": "average",
+          "Description": "Aggregating strategy for top_k > 1",
+          "Range": {
+            "CategoricalParameterRangeSpecification": {
+              "Values": ["average", "vote"]
+            }
+          }
+        },
+        {
+          "Name": "EVAL_BATCH_SIZE",
+          "Type": "Integer",
+          "Range": {
+            "IntegerParameterRangeSpecification": {
+              "MinValue": "1",
+              "MaxValue": "1024"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

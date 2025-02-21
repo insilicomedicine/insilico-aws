@@ -1,0 +1,3 @@
+recursive-include insilico_aws *
+recursive-include examples *
+global-exclude */__pycache__/*

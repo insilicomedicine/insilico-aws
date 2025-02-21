@@ -1,0 +1,38 @@
+[build-system]
+requires = ['setuptools']
+
+[project]
+name='insilico-aws'
+description="A python package for interacting with Insilico Medicine's products deployed on AWS"
+version='1.2.6'
+dependencies = ['sagemaker']
+authors = [{ name = 'insilico team', email = 'info@insilico.com' }]
+readme = 'README.md'
+
+[project.optional-dependencies]
+dev = [
+    'mypy==1.15.0',
+    'ruff==0.11.4',
+    'build==1.2.2',
+    'twine==6.1.0'
+]
+
+[tool.mypy]
+show_column_numbers = true
+exclude = ['venv']
+disable_error_code = [
+    'import-untyped'
+]
+
+[tool.ruff]
+line-length = 90
+include = ['pyproject.toml', 'insilico_aws/**/*.py']
+
+[tool.setuptools]
+include-package-data = true
+
+[project.urls]
+homepage = 'https://pharma.ai/'
+repository = 'https://github.com/insilicomedicine/insilico-aws'
+documentation = 'https://github.com/insilicomedicine/insilico-aws/blob/main/README.md'
+'Bug Tracker' = 'https://github.com/insilicomedicine/insilico-aws/issues'
