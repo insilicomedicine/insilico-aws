@@ -1,7 +1,6 @@
 import csv
 import json
 import logging
-import warnings
 from contextlib import suppress
 from functools import partial
 from typing import Any, Optional
@@ -99,9 +98,9 @@ class AlgorithmClient:
         self,
         input_path: str,
         output_path: str,
+        instance_type: str,
         wait: bool = False,
         role: Optional[str] = None,
-        instance_type: Optional[str] = None,
         max_run_hours: Optional[int] = None,
         tags: Optional[dict[str, Any]] = None,
         training_parameters: Optional[dict[str, Any]] = None,
@@ -123,13 +122,6 @@ class AlgorithmClient:
         Returns:
             Created training job name.
         """
-        if not instance_type:
-            instance_type = self.algorithm.training_instance_type[0]
-        elif instance_type not in self.algorithm.training_instance_type:
-            warnings.warn(
-                f"Unsupported instance type, choose one of: "
-                f"{' '.join(self.algorithm.training_instance_type)}"
-            )
         if not role:
             role = sagemaker.get_execution_role(sagemaker_session=self.sagemaker_session)
 
@@ -186,7 +178,7 @@ class AlgorithmClient:
     def create_endpoint(
         self,
         endpoint_name: str,
-        instance_type: Optional[str] = None,
+        instance_type: str,
         n_instances: int = 1,
         exists_ok: bool = False,
         role: Optional[str] = None,
@@ -220,13 +212,6 @@ class AlgorithmClient:
             model_data_path = (
                 f"{training_job_output_path.strip('/')}/"
                 f"{training_job_name}/output/model.tar.gz"
-            )
-        if not instance_type:
-            instance_type = self.algorithm.inference_instance_type[0]
-        elif instance_type not in self.algorithm.inference_instance_type:
-            warnings.warn(
-                f"Unsupported instance type, choose one of: "
-                f"{' '.join(self.algorithm.inference_instance_type)}"
             )
         if not role:
             role = sagemaker.get_execution_role(sagemaker_session=self.sagemaker_session)

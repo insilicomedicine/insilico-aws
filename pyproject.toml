@@ -4,9 +4,9 @@ requires = ['setuptools']
 [project]
 name='insilico-aws'
 description="A python package for interacting with Insilico Medicine's products deployed on AWS"
-version='1.2.6'
+version='1.2.11'
 dependencies = ['sagemaker']
-authors = [{ name = 'insilico team', email = 'info@insilico.com' }]
+authors = [{ name = 'insilico team', email = 'chemistry42@insillicomedicine.com' }]
 readme = 'README.md'
 
 [project.optional-dependencies]

@@ -37,4 +37,4 @@ then open the `examples` directory.
 
 ## Support
 
-Please contact us via `info@insilico.com`
+If you have any questions or need assistance, feel free to reach out at: chemistry42@insillicomedicine.com
