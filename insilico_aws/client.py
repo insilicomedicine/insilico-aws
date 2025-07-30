@@ -230,7 +230,7 @@ class AlgorithmClient:
 
         validate_parameters(self.algorithm.inference_parameters, inference_parameters)
         if isinstance(inference_parameters, dict):
-            inference_parameters = {k: str(v) for k, v in inference_parameters}
+            inference_parameters = {k: str(v) for k, v in inference_parameters.items()}
 
         model_package = sagemaker.ModelPackage(
             role=role,
